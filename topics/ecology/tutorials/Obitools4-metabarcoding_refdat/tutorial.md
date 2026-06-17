@@ -175,19 +175,52 @@ A big step can have several subsections or sub steps:
 
 > <hands-on-title> Task description </hands-on-title>
 >
-> 1. {% tool [obigrep](toolshed.g2.bx.psu.edu/repos/iuc/obi_grep/obi_grep/4.4.42+galaxy0) %} with the following parameters:
->    - {% icon param-file %} *"Input sequences file"*: `output` (Input dataset)
+> 1. {% tool [obigrep](toolshed.g2.bx.psu.edu/repos/iuc/obi_grep/obi_grep/4.4.45+galaxy0) %} with the following parameters:
+>    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obipcr** {% icon tool %})
 >    - In *"filter parameter"*:
 >        - {% icon param-repeat %} *"Insert filter parameter"*
 >            - *"Choose the sequence record selection option"*: `attribute`
->                - *"Attribute to use as key in key=value."*: `merged_sample`
->                - *"Value to filter on in key=value"*: `{'id': 7, 'output_name': 'output'}`
->        - {% icon param-repeat %} *"Insert filter parameter"*
->            - *"Choose the sequence record selection option"*: `lmin`
->                - *"lmin"*: `{'id': 4, 'output_name': 'output'}`
->        - {% icon param-repeat %} *"Insert filter parameter"*
->            - *"Choose the sequence record selection option"*: `mincount`
->                - *"mincount"*: `10`
+>                - *"Attribute to use as key in key=value."*: `taxid`
+>    - *"Choose source of NCBI Taxonomy"*: `Use built-in NCBI Taxonomy database`
+>        - *"NCBI Taxonomy database"*: `2024-06-05`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > <comment-title> short description </comment-title>
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> <question-title></question-title>
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > <solution-title></solution-title>
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **obiuniq**
+
+> <hands-on-title> Task description </hands-on-title>
+>
+> 1. {% tool [obiuniq](toolshed.g2.bx.psu.edu/repos/iuc/obi_uniq/obi_uniq/4.4.45+galaxy0) %} with the following parameters:
+>    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obigrep** {% icon tool %})
+>    - In *"Option and his following attribute"*:
+>        - {% icon param-repeat %} *"Insert Option and his following attribute"*
+>            - *"Use specific option"*: `category_attribute`
+>            - *"Attribute"*: `taxid`
 >    - *"Choose source of NCBI Taxonomy"*: `No taxonomic database selected`
 >
 >    ***TODO***: *Check parameter descriptions*
@@ -222,48 +255,9 @@ A big step can have several subsections or sub steps:
 > <hands-on-title> Task description </hands-on-title>
 >
 > 1. {% tool [obirefidx](toolshed.g2.bx.psu.edu/repos/iuc/obi_refidx/obi_refidx/4.4.42+galaxy0) %} with the following parameters:
->    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obipcr** {% icon tool %})
+>    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obiuniq** {% icon tool %})
 >    - *"Choose source of NCBI Taxonomy"*: `Use built-in NCBI Taxonomy database`
 >        - *"NCBI Taxonomy database"*: `2024-06-05`
->
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > <comment-title> short description </comment-title>
->    >
->    > A comment about the tool or something else. This box can also be in the main text
->    {: .comment}
->
-{: .hands_on}
-
-***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
-
-> <question-title></question-title>
->
-> 1. Question1?
-> 2. Question2?
->
-> > <solution-title></solution-title>
-> >
-> > 1. Answer for question1
-> > 2. Answer for question2
-> >
-> {: .solution}
->
-{: .question}
-
-## Sub-step with **obiclean**
-
-> <hands-on-title> Task description </hands-on-title>
->
-> 1. {% tool [obiclean](toolshed.g2.bx.psu.edu/repos/iuc/obi_clean/obi_clean/4.4.42+galaxy0) %} with the following parameters:
->    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obigrep** {% icon tool %})
->    - *"Maximum numbers of differences between two variant sequences"*: `{'id': 8, 'output_name': 'output'}`
->    - *"Specify an attribute containing sample definition"*: `sample`
->    - *"Threshold ratio between counts (rare/abundant counts) of two sequence records so that the less abundant one is a variant of the more abundant"*: `{'id': 9, 'output_name': 'output'}`
->    - *"Use this option to actually discarded sequence instead of annotate"*: `Yes`
->    - *"enable chimera detection"*: `Yes`
 >
 >    ***TODO***: *Check parameter descriptions*
 >
@@ -297,7 +291,7 @@ A big step can have several subsections or sub steps:
 > <hands-on-title> Task description </hands-on-title>
 >
 > 1. {% tool [obitag](toolshed.g2.bx.psu.edu/repos/iuc/obi_tag/obi_tag/4.4.42+galaxy0) %} with the following parameters:
->    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obiclean** {% icon tool %})
+>    - {% icon param-file %} *"Input sequences file"*: `output` (Input dataset)
 >    - {% icon param-file %} *"Parameter file"*: `output` (output of **obirefidx** {% icon tool %})
 >    - *"Choose source of NCBI Taxonomy"*: `Use built-in NCBI Taxonomy database`
 >        - *"NCBI Taxonomy database"*: `2024-06-05`
