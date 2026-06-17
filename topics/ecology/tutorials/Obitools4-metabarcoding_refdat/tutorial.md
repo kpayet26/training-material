@@ -214,7 +214,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obiuniq**
 
-> <hands-on-title> Task description </hands-on-title>
+> <hands-on-title> Dereplicate the sequence </hands-on-title>
 >
 > 1. {% tool [obiuniq](toolshed.g2.bx.psu.edu/repos/iuc/obi_uniq/obi_uniq/4.4.45+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obigrep** {% icon tool %})
@@ -253,7 +253,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obirefidx**
 
-> <hands-on-title> Task description </hands-on-title>
+> <hands-on-title> index the dataset </hands-on-title>
 >
 > 1. {% tool [obirefidx](toolshed.g2.bx.psu.edu/repos/iuc/obi_refidx/obi_refidx/4.4.42+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obiuniq** {% icon tool %})
@@ -264,7 +264,7 @@ A big step can have several subsections or sub steps:
 >
 >    ***TODO***: *Consider adding a comment or tip box*
 >
->    > <comment-title> short description </comment-title>
+>    > <comment-title> This tool permit to index the dataset by make a alignement sequence per sequence. This command return the same sequence file but put the score of alignement in the annotation of each sequence. Only the best score.  </comment-title>
 >    >
 >    > A comment about the tool or something else. This box can also be in the main text
 >    {: .comment}
@@ -289,7 +289,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obitag**
 
-> <hands-on-title> Task description </hands-on-title>
+> <hands-on-title> Taxonomic assignement </hands-on-title>
 >
 > 1. {% tool [obitag](toolshed.g2.bx.psu.edu/repos/iuc/obi_tag/obi_tag/4.4.42+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (Input dataset)
