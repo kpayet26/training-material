@@ -4,8 +4,8 @@ layout: tutorial_hands_on
 title: Build a reference dataset with OBITools
 zenodo_link: ''
 questions:
-- Which biological questions are addressed by the tutorial?
-- Which bioinformatics techniques are important to know for this type of data?
+- How to build a reference dataset for my workflow OBITools ?
+- How to manage a sequence database to construct a reference dataset ?
 objectives:
 - The learning objectives are the goals of the tutorial
 - They will be informed by your audience and will communicate to them and to yourself
@@ -29,6 +29,7 @@ contributors:
 
 <!-- This is a comment. -->
 
+OBITools is a package that handles metabarcoding dataset.
 General introduction about the topic and then an introduction of the
 tutorial (the questions and the objectives). It is nice also to have a
 scheme to sum up the pipeline used during the tutorial. The idea is to
@@ -149,9 +150,9 @@ A big step can have several subsections or sub steps:
 >
 >    ***TODO***: *Consider adding a comment or tip box*
 >
->    > <comment-title> This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. </comment-title>
+>    > <comment-title> How it works </comment-title>
 >    >
->    > In this tutorial, we are using a marker that is located on the COI gene, a very commun and well known gene in barcoding studies.
+>    > This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. In this tutorial, we are using a marker that is located on the COI gene, a very commun and well known gene in barcoding studies.
 >    {: .comment}
 >
 {: .hands_on}
@@ -264,9 +265,9 @@ A big step can have several subsections or sub steps:
 >
 >    ***TODO***: *Consider adding a comment or tip box*
 >
->    > <comment-title> This tool permit to index the dataset by make a alignement sequence per sequence. This command return the same sequence file but put the score of alignement in the annotation of each sequence. Only the best score.  </comment-title>
+>    > <comment-title> How it works </comment-title>
 >    >
->    > A comment about the tool or something else. This box can also be in the main text
+>    > This tool permit to index the dataset by make a alignement sequence per sequence. This command return the same sequence file but put the score of alignement in the annotation of each sequence. Only the best score. 
 >    {: .comment}
 >
 {: .hands_on}
