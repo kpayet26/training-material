@@ -1,7 +1,7 @@
 ---
 layout: tutorial_hands_on
 
-title: Build a reference dataset
+title: Build a reference dataset with OBITools
 zenodo_link: ''
 questions:
 - Which biological questions are addressed by the tutorial?
@@ -18,8 +18,9 @@ key_points:
 - The take-home messages
 - They will appear at the end of the tutorial
 contributors:
-- contributor1
-- contributor2
+- kpayet26
+- Morgane Durand
+- yvanlebras
 
 ---
 
@@ -133,7 +134,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obipcr**
 
-> <hands-on-title> Task description </hands-on-title>
+> <hands-on-title> Carry out the PCR in sillico </hands-on-title>
 >
 > 1. {% tool [obipcr](toolshed.g2.bx.psu.edu/repos/iuc/obi_pcr/obi_pcr/4.4.42+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (Input dataset)
@@ -148,9 +149,9 @@ A big step can have several subsections or sub steps:
 >
 >    ***TODO***: *Consider adding a comment or tip box*
 >
->    > <comment-title> short description </comment-title>
+>    > <comment-title> This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. </comment-title>
 >    >
->    > A comment about the tool or something else. This box can also be in the main text
+>    > In this tutorial, we are using a marker that is located on the COI gene, a very commun and well known gene in barcoding studies.
 >    {: .comment}
 >
 {: .hands_on}
@@ -173,7 +174,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obigrep**
 
-> <hands-on-title> Task description </hands-on-title>
+> <hands-on-title> Select sequences with a taxonomic rank </hands-on-title>
 >
 > 1. {% tool [obigrep](toolshed.g2.bx.psu.edu/repos/iuc/obi_grep/obi_grep/4.4.45+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obipcr** {% icon tool %})
