@@ -29,7 +29,10 @@ contributors:
 
 <!-- This is a comment. -->
 
-OBITools is a package that handles metabarcoding dataset.
+OBITools is a package that handles metabarcoding dataset. This package have the goal to propose
+a entire package that is personalize and adaptable to the biological question, to the dataset
+or in our case, a marker ! To do so, the commun tools are unix mimicking based tool, like grep, uniq, etc.
+But instead of apply to lines, it applied to sequences. 
 General introduction about the topic and then an introduction of the
 tutorial (the questions and the objectives). It is nice also to have a
 scheme to sum up the pipeline used during the tutorial. The idea is to
@@ -144,7 +147,9 @@ A big step can have several subsections or sub steps:
 >    - *"Maximum length of the barcode, primers excluded."*: `{'id': 3, 'output_name': 'output'}`
 >    - *"Minimum length of the barcode, primers excluded."*: `{'id': 4, 'output_name': 'output'}`
 >    - *"Maximum number of mismatches allowed for each primer"*: `{'id': 5, 'output_name': 'output'}`
->    - *"Choose source of NCBI Taxonomy"*: `No taxonomic database selected`
+>    - *"Choose source of NCBI Taxonomy"*: `Use built-in NCBI Taxonomy database`
+>        - *"NCBI Taxonomy database"*: `2024-06-05`
+>
 >
 >    ***TODO***: *Check parameter descriptions*
 >
@@ -152,10 +157,16 @@ A big step can have several subsections or sub steps:
 >
 >    > <comment-title> How it works </comment-title>
 >    >
->    > This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. In this tutorial, we are using a marker that is located on the COI gene, a very commun and well known gene in barcoding studies.
+>    > This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. In this tutorial, we are using a marker that is located on the COI gene, which is a very commun and well known gene to identify animal.
 >    {: .comment}
 >
 {: .hands_on}
+
+> <details-title>More details on the PCR</details-title>
+>
+> This method, called Polymerase Chain Reaction, is a DNA amplification with specific primers that 
+> ![Display the annotated video in Galaxy](../../images/Obitools4/PCR_schema.svg.png){: style="width:75%; display:block; margin:auto;"}
+{: .details}
 
 ***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
 
@@ -175,7 +186,7 @@ A big step can have several subsections or sub steps:
 
 ## Sub-step with **obigrep**
 
-> <hands-on-title> Select sequences with a taxonomic rank </hands-on-title>
+> <hands-on-title> Select sequences by his taxonomic rank </hands-on-title>
 >
 > 1. {% tool [obigrep](toolshed.g2.bx.psu.edu/repos/iuc/obi_grep/obi_grep/4.4.45+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obipcr** {% icon tool %})
@@ -196,6 +207,12 @@ A big step can have several subsections or sub steps:
 >    {: .comment}
 >
 {: .hands_on}
+
+> <details-title>Taxonomic database</details-title>
+>
+> Add more details in Markdown...
+>
+{: .details}
 
 ***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
 
@@ -240,13 +257,13 @@ A big step can have several subsections or sub steps:
 
 > <question-title></question-title>
 >
-> 1. Question1?
-> 2. Question2?
+> 1. What is dereplication ?
+> 2. Why we need to dereplicate the dataset ?
 >
 > > <solution-title></solution-title>
 > >
-> > 1. Answer for question1
-> > 2. Answer for question2
+> > 1. The dereplication step is to regroup *identical* sequence, in this case by taxid.
+> > 2. The dereplication step is a way to reduce the size of the sequence file without remove information
 > >
 > {: .solution}
 >
@@ -271,6 +288,8 @@ A big step can have several subsections or sub steps:
 >    {: .comment}
 >
 {: .hands_on}
+
+
 
 ***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
 
@@ -302,9 +321,9 @@ A big step can have several subsections or sub steps:
 >
 >    ***TODO***: *Consider adding a comment or tip box*
 >
->    > <comment-title> short description </comment-title>
+>    > <comment-title> How it works </comment-title>
 >    >
->    > A comment about the tool or something else. This box can also be in the main text
+>    > Obitag is the last tool of the workflow, it permit to make the taxonomic assignment by Lowest Common Ancestor (LCA)
 >    {: .comment}
 >
 {: .hands_on}
@@ -337,3 +356,5 @@ Consider merging some hands-on boxes to have a meaningful flow of the analyses*
 
 Sum up the tutorial and the key takeaways here. We encourage adding an overview image of the
 pipeline used.
+
+![Display the annotated video in Galaxy](../../images/Obitools4/leia-youre-my-only-hope.gif){: style="width:75%; display:block; margin:auto;"}
