@@ -30,8 +30,7 @@ contributors:
 <!-- This is a comment. -->
 
 OBITools is a package that handles metabarcoding dataset. This package have the goal to propose
-a entire package that is personalize and adaptable to the biological question, to the dataset
-or in our case, a marker ! To do so, the commun tools are unix mimicking based tool, like grep, uniq, etc.
+a entire package that is personalize and adaptable to the biological question or to the dataset. To do so, the commun tools are unix mimicking based tool, like grep, uniq, etc.
 But instead of apply to lines, it applied to sequences. 
 General introduction about the topic and then an introduction of the
 tutorial (the questions and the objectives). It is nice also to have a
@@ -116,10 +115,23 @@ have fun!
 >
 {: .hands_on}
 
-# Title of the section usually corresponding to a big step in the analysis
+# Build a reference dataset
 
+To process a metabarcoding dataset, we need to build a reference dataset. This dataset is a build from a sequence dabase (NCBI, BOLD, MIDORI2, etc...). And with it, a taxonomic database are used 
 It comes first a description of the step: some background and some theory.
 Some image can be added there to support the theory explanation:
+
+> <details-title> Sequence database </details-title>
+>
+> A sequence database is an organised collections of nucleotides and protein. We using a sequence database to construct a complete sample of the possible sequence. The choice of the database is crucial to have a signifiant result because it is using to annote the metabarcoding file. 
+>
+{: .details}
+
+> <details-title> Taxonomic database </details-title>
+>
+> Obitools in this state of thing use a database to proceed : the taxdump from NCBI. This is a folder that work like a taxonomic tree, with nodes connected by parents and sons. Every taxon is a node, connected by parents and sons.
+>
+{: .details}
 
 ![Alternative text](../../images/image_name "Legend of the image")
 
@@ -136,36 +148,33 @@ The idea is to keep the theory description before quite simple to focus more on 
 A big step can have several subsections or sub steps:
 
 
-## Sub-step with **obipcr**
+## PCR in sillico with **obipcr**
 
-> <hands-on-title> Carry out the PCR in sillico </hands-on-title>
+This step is a **in sillico PCR**. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. In this tutorial, we are using a marker that is located on the COI gene, which is a very commun and well known gene to identify animal.
+
+> <hands-on-title> PCR In sillico </hands-on-title>
 >
 > 1. {% tool [obipcr](toolshed.g2.bx.psu.edu/repos/iuc/obi_pcr/obi_pcr/4.4.42+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (Input dataset)
->    - *"Sequence of the forward primer"*: `{'id': 1, 'output_name': 'output'}`
->    - *"Sequence of the reverse primer"*: `{'id': 2, 'output_name': 'output'}`
->    - *"Maximum length of the barcode, primers excluded."*: `{'id': 3, 'output_name': 'output'}`
->    - *"Minimum length of the barcode, primers excluded."*: `{'id': 4, 'output_name': 'output'}`
->    - *"Maximum number of mismatches allowed for each primer"*: `{'id': 5, 'output_name': 'output'}`
+>    - *"Sequence of the forward primer"*: `GGWACWGGWTGAACWGTWTAYCCYCC`
+>    - *"Sequence of the reverse primer"*: `TANACYTCNGGRTGNCCRAARAAYCA`
+>    - *"Maximum length of the barcode, primers excluded."*: `313`
+>    - *"Minimum length of the barcode, primers excluded."*: `290`
+>    - *"Maximum number of mismatches allowed for each primer"*: `3`
 >    - *"Choose source of NCBI Taxonomy"*: `Use built-in NCBI Taxonomy database`
 >        - *"NCBI Taxonomy database"*: `2024-06-05`
 >
->
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > <comment-title> How it works </comment-title>
+>    > <comment-title> Specific of the marker you use </comment-title>
 >    >
->    > This step is a in sillico PCR. Thats means this command mimick this molecular method. The output will be sequence that are predicted to be amplified by the PCR, according to the parameter of a specific marker. In this tutorial, we are using a marker that is located on the COI gene, which is a very commun and well known gene to identify animal.
+>    >  In this tutorial, we are using a marker that is located on the COI gene, which is a very commun and well known gene to identify animal.
 >    {: .comment}
 >
 {: .hands_on}
 
 > <details-title>More details on the PCR</details-title>
 >
-> This method, called Polymerase Chain Reaction, is a DNA amplification with specific primers that 
-> ![Display the annotated video in Galaxy](../../images/Obitools4/PCR_schema.svg.png){: style="width:75%; display:block; margin:auto;"}
+> Called Polymerase Chain Reaction, is a DNA amplification with specific primers that permit to have a specific piece of DNA amplified ??????
+> ![Display the annotated video in Galaxy](../../images/Obitools4/PCR_schema.png){: style="width:75%; display:block; margin:auto;"}
 {: .details}
 
 ***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
@@ -184,9 +193,9 @@ A big step can have several subsections or sub steps:
 >
 {: .question}
 
-## Sub-step with **obigrep**
+## Select sequences by his taxonomic rank with **obigrep**
 
-> <hands-on-title> Select sequences by his taxonomic rank </hands-on-title>
+> <hands-on-title> Filter the sequences </hands-on-title>
 >
 > 1. {% tool [obigrep](toolshed.g2.bx.psu.edu/repos/iuc/obi_grep/obi_grep/4.4.45+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obipcr** {% icon tool %})
@@ -208,11 +217,6 @@ A big step can have several subsections or sub steps:
 >
 {: .hands_on}
 
-> <details-title>Taxonomic database</details-title>
->
-> Add more details in Markdown...
->
-{: .details}
 
 ***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
 
@@ -230,9 +234,9 @@ A big step can have several subsections or sub steps:
 >
 {: .question}
 
-## Sub-step with **obiuniq**
+## Dereplicate the sequence with **obiuniq**
 
-> <hands-on-title> Dereplicate the sequence </hands-on-title>
+> <hands-on-title> Obtain unique sequence </hands-on-title>
 >
 > 1. {% tool [obiuniq](toolshed.g2.bx.psu.edu/repos/iuc/obi_uniq/obi_uniq/4.4.45+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input sequences file"*: `output` (output of **obigrep** {% icon tool %})
@@ -257,13 +261,20 @@ A big step can have several subsections or sub steps:
 
 > <question-title></question-title>
 >
-> 1. What is dereplication ?
-> 2. Why we need to dereplicate the dataset ?
+> What is dereplication ?
 >
 > > <solution-title></solution-title>
 > >
-> > 1. The dereplication step is to regroup *identical* sequence, in this case by taxid.
-> > 2. The dereplication step is a way to reduce the size of the sequence file without remove information
+> > The dereplication step is to regroup *identical* sequence, in this case by taxid.
+> >
+> {: .solution}
+> <question-title></question-title>
+>
+> Why we need to dereplicate the dataset ?
+>
+> > <solution-title></solution-title>
+> >
+> > The dereplication step is a way to reduce the size of the sequence file without remove information
 > >
 > {: .solution}
 >
